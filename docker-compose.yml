@@ -1,0 +1,56 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: cine
+      POSTGRES_USER: cine
+      POSTGRES_PASSWORD: cine
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - internal_network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_web
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: cine@cine.com.br
+      PGADMIN_DEFAULT_PASSWORD: cine
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - internal_network
+    depends_on:
+      - postgres
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cine_app
+    restart: unless-stopped
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/cine
+      SPRING_DATASOURCE_USERNAME: cine
+      SPRING_DATASOURCE_PASSWORD: cine
+    ports:
+      - "8081:8080"
+    networks:
+      - internal_network
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  internal_network:
+    driver: bridge
