@@ -30,12 +30,9 @@ public class SeatService {
                 .orElseThrow(() -> new IllegalArgumentException("Session not found."));
         var ticket = ticketRepository.findById(dto.sessionId())
                 .orElseThrow(() -> new IllegalArgumentException("Ticket not found."));
-        var room = roomRepository.findById(dto.roomId())
-                .orElseThrow(() -> new IllegalArgumentException("Room not found."));
 
         var entity = mapper.ticketCreateRequestDTOConvertToEntity(dto);
         entity.setSession(session);
-        entity.setRoom(room);
         entity.setTicket(ticket);
 
         seatRepository.save(entity);

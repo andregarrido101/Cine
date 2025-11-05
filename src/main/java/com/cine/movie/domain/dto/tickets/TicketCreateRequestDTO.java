@@ -44,17 +44,7 @@ public record TicketCreateRequestDTO(
         )
         @NotBlank
         @Size(min = 1, max = 3)
-        String seatCode,
+        String seatCode
 
-        @Schema(
-                description = "Room ID where the session is held",
-                example = "5",
-                requiredMode = REQUIRED,
-                type = "long",
-                minimum = "1"
-        )
-        @NotBlank
-        @Size(min = 1, max = 2)
-        Long roomId
 ) {
 }

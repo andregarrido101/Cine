@@ -31,7 +31,4 @@ public class TicketEntity {
     @Column(name = "seat_code", nullable = false)
     private String seatCode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id", nullable = false)
-    private RoomEntity room;
 }

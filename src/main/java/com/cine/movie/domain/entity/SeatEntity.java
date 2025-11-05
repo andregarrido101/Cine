@@ -26,10 +26,6 @@ public class SeatEntity {
     private SessionEntity session;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id", nullable = false)
-    private RoomEntity room;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticket_id", nullable = false)
     private TicketEntity ticket;
 }

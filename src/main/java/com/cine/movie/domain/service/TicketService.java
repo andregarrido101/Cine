@@ -38,15 +38,14 @@ public class TicketService {
         log.info("Creating a new ticket");
 
         paymentService.processPayment();
+
         var user = verifyUserExistence(dto);
-        var session = verifySessionExistence(dto);
-        var room = verifyRoomExistenceAndAvailability(dto);
+        var session = verifySessionExistenceAndAvailability(dto);
 
         verifySeatAvailability(dto);
         subtractSeatFromSession(dto);
 
         var entity = ticketMapper.ticketCreateRequestDTOConvertToEntity(dto);
-        entity.setRoom(room);
         entity.setUser(user);
         entity.setSession(session);
 
@@ -62,9 +61,13 @@ public class TicketService {
                 .orElseThrow(() -> new IllegalArgumentException("User not found."));
     }
 
-    private SessionEntity verifySessionExistence(TicketCreateRequestDTO dto) {
-        return sessionRepository.findById(dto.sessionId())
+    private SessionEntity verifySessionExistenceAndAvailability(TicketCreateRequestDTO dto) {
+        var session = sessionRepository.findById(dto.sessionId())
                 .orElseThrow(() -> new IllegalArgumentException("Session not found."));
+        if (session.getAvailableSeats() == 0) {
+            throw new IllegalArgumentException("No available seats for this session.");
+        }
+        return session;
     }
 
     private void verifySeatAvailability(TicketCreateRequestDTO dto) {
@@ -72,15 +75,6 @@ public class TicketService {
         if (seatAvailable) {
             throw new IllegalArgumentException("Seat not available.");
         }
-    }
-
-    private RoomEntity verifyRoomExistenceAndAvailability(TicketCreateRequestDTO dto) {
-        var room = roomRepository.findById(dto.roomId())
-                .orElseThrow(() -> new IllegalArgumentException("Room not found."));
-        if (Objects.equals(room.getIsAvailable(), OCCUPIED_ROOM)) {
-            throw new IllegalArgumentException("Room is not available.");
-        }
-        return room;
     }
 
     private void subtractSeatFromSession(TicketCreateRequestDTO dto) {

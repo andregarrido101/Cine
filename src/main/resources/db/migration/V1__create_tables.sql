@@ -39,22 +39,18 @@ CREATE TABLE tickets (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     session_id INT NOT NULL,
-    room_id INT NOT NULL,
     seat_code VARCHAR(10) NOT NULL,
     purchase_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE,
-    FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE CASCADE
+    FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE
 );
 
 CREATE TABLE seats (
     id SERIAL PRIMARY KEY,
     seat_code VARCHAR(10) NOT NULL,
     session_id INT NOT NULL,
-    room_id INT NOT NULL,
     ticket_id INT,
     FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE,
-    FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE CASCADE,
     FOREIGN KEY (ticket_id) REFERENCES tickets(id) ON DELETE SET NULL,
     CONSTRAINT unique_seat_per_session UNIQUE (seat_code, session_id)
 );
