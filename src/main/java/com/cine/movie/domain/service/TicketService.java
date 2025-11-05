@@ -1,6 +1,8 @@
 package com.cine.movie.domain.service;
 
 import com.cine.movie.domain.dto.tickets.TicketCreateRequestDTO;
+import com.cine.movie.domain.entity.RoomEntity;
+import com.cine.movie.domain.entity.SessionEntity;
 import com.cine.movie.domain.entity.TicketEntity;
 import com.cine.movie.domain.entity.UserEntity;
 import com.cine.movie.domain.mapper.SeatMapper;
@@ -8,12 +10,13 @@ import com.cine.movie.domain.mapper.TicketMapper;
 import com.cine.movie.domain.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
+import java.util.Objects;
+
+import static com.cine.movie.domain.entity.enums.RoomAvailability.OCCUPIED_ROOM;
+
 
 @Slf4j
 @Service
@@ -35,22 +38,14 @@ public class TicketService {
         log.info("Creating a new ticket");
 
         paymentService.processPayment();
-        verifyUserExistence(dto);
-        verifySessionExistence(dto);
-
-        // Verificar se a sala esta ocupada ou retirar roomId daqui
+        var user = verifyUserExistence(dto);
+        var session = verifySessionExistence(dto);
+        var room = verifyRoomExistenceAndAvailability(dto);
 
         verifySeatAvailability(dto);
         subtractSeatFromSession(dto);
 
         var entity = ticketMapper.ticketCreateRequestDTOConvertToEntity(dto);
-        var room = roomRepository.findById(dto.roomId())
-                .orElseThrow(() -> new IllegalArgumentException("Room not found."));
-        var user = userRepository.findById(dto.userId())
-                .orElseThrow(() -> new IllegalArgumentException("User not found."));
-        var session = sessionRepository.findById(dto.sessionId())
-                .orElseThrow(() -> new IllegalArgumentException("Session not found."));
-
         entity.setRoom(room);
         entity.setUser(user);
         entity.setSession(session);
@@ -62,18 +57,14 @@ public class TicketService {
         return ticketSaved;
     }
 
-    private void verifyUserExistence(TicketCreateRequestDTO dto) {
-        var user = userRepository.existsById(dto.userId());
-        if (!user) {
-            throw new IllegalArgumentException("User not found.");
-        }
+    private UserEntity verifyUserExistence(TicketCreateRequestDTO dto) {
+        return userRepository.findById(dto.userId())
+                .orElseThrow(() -> new IllegalArgumentException("User not found."));
     }
 
-    private void verifySessionExistence(TicketCreateRequestDTO dto) {
-        var session = sessionRepository.existsById(dto.sessionId());
-        if (!session) {
-            throw new IllegalArgumentException("Session not found.");
-        }
+    private SessionEntity verifySessionExistence(TicketCreateRequestDTO dto) {
+        return sessionRepository.findById(dto.sessionId())
+                .orElseThrow(() -> new IllegalArgumentException("Session not found."));
     }
 
     private void verifySeatAvailability(TicketCreateRequestDTO dto) {
@@ -83,12 +74,17 @@ public class TicketService {
         }
     }
 
+    private RoomEntity verifyRoomExistenceAndAvailability(TicketCreateRequestDTO dto) {
+        var room = roomRepository.findById(dto.roomId())
+                .orElseThrow(() -> new IllegalArgumentException("Room not found."));
+        if (Objects.equals(room.getIsAvailable(), OCCUPIED_ROOM)) {
+            throw new IllegalArgumentException("Room is not available.");
+        }
+        return room;
+    }
+
     private void subtractSeatFromSession(TicketCreateRequestDTO dto) {
         sessionRepository.subtractSeatQuantity(dto.sessionId(), 1);
     }
 
-    private void registrySeats(TicketCreateRequestDTO dto) {
-        var entity = seatMapper.ticketCreateRequestDTOConvertToEntity(dto);
-        seatRepository.save(entity);
-    }
 }
