@@ -28,7 +28,7 @@ public class PaymentService {
             var client = HttpClient.newHttpClient();
 
             var request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://external-payment-service.com/api/authorize"))
+                    .uri(URI.create("https://zsy6tx7aql.execute-api.sa-east-1.amazonaws.com/authorizer"))
                     .header("Accept", "application/json")
                     .GET()
                     .timeout(Duration.ofSeconds(30))

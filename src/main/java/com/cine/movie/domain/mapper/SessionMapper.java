@@ -15,10 +15,8 @@ public class SessionMapper {
         }
 
         var sessionEntity = new SessionEntity();
-        sessionEntity.setMovieName(dto.movieTitle());
         sessionEntity.setPricePerSeat(dto.pricePerSeat());
         sessionEntity.setSessionTime(dto.sessionTime());
-        sessionEntity.setRoomNumber(dto.roomNumber());
         sessionEntity.setAvailableSeats(dto.availableSeats());
 
         return sessionEntity;

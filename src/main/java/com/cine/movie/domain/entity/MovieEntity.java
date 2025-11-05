@@ -1,6 +1,7 @@
 package com.cine.movie.domain.entity;
 
 import com.cine.movie.domain.entity.enums.MovieAvailability;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +10,8 @@ import lombok.Setter;
 
 import static jakarta.persistence.EnumType.STRING;
 
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "movies", schema = "cine")
 @Entity
 @Getter

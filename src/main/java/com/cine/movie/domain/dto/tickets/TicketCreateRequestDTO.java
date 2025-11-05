@@ -14,7 +14,7 @@ public record TicketCreateRequestDTO(
 
         @Schema(
                 description = "ID of the session for which the ticket is being created",
-                example = "123",
+                example = "2",
                 requiredMode = REQUIRED,
                 type = "long",
                 minimum = "1"
@@ -35,7 +35,7 @@ public record TicketCreateRequestDTO(
         Long userId,
 
         @Schema(
-                description = "Seat number for the ticket",
+                description = "Seat code for the ticket",
                 example = "A10",
                 requiredMode = REQUIRED,
                 type = "string",
@@ -44,6 +44,17 @@ public record TicketCreateRequestDTO(
         )
         @NotBlank
         @Size(min = 1, max = 3)
-        String seatNumber
+        String seatCode,
+
+        @Schema(
+                description = "Room ID where the session is held",
+                example = "5",
+                requiredMode = REQUIRED,
+                type = "long",
+                minimum = "1"
+        )
+        @NotBlank
+        @Size(min = 1, max = 2)
+        Long roomId
 ) {
 }

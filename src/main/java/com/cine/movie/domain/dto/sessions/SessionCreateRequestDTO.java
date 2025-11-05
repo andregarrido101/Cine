@@ -13,16 +13,16 @@ import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 public record SessionCreateRequestDTO(
 
         @Schema(
-                description = "Title of the movie",
-                example = "Inception",
+                description = "ID of the movie for the session",
+                example = "1",
                 requiredMode = REQUIRED,
-                type = "string",
+                type = "number",
                 minLength = 1,
                 maxLength = 100
         )
         @NotBlank
         @Size(min = 1, max = 100)
-        String movieTitle,
+        Long movieId,
 
         @Schema(
                 description = "Price per seat for the session",
@@ -48,7 +48,7 @@ public record SessionCreateRequestDTO(
         String sessionTime,
 
         @Schema(
-                description = "Room number where the session will take place",
+                description = "Room ID where the session will take place",
                 example = "5",
                 requiredMode = REQUIRED,
                 type = "integer",
@@ -56,7 +56,7 @@ public record SessionCreateRequestDTO(
         )
         @Size(min = 1)
         @NotBlank
-        int roomNumber,
+        Long roomId,
 
         @Schema(
                 description = "Number of available seats for the session",
@@ -67,6 +67,6 @@ public record SessionCreateRequestDTO(
         )
         @Size(min = 1)
         @NotBlank
-        int availableSeats
+        Integer availableSeats
 ) {
 }

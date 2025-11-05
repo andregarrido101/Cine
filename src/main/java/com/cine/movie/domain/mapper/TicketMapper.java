@@ -15,9 +15,7 @@ public class TicketMapper {
         }
 
         var ticketEntity = new TicketEntity();
-        ticketEntity.setSessionId(dto.sessionId());
-        ticketEntity.setSeatNumber(dto.seatNumber());
-        ticketEntity.setUserId(dto.userId());
+        ticketEntity.setSeatCode(dto.seatCode());
 
         return ticketEntity;
     }

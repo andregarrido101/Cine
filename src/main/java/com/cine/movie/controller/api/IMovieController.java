@@ -20,7 +20,12 @@ public interface IMovieController {
     @ApiResponses(value = {
                     @ApiResponse(
                             responseCode = "200",
-                            description = "Successfully retrieved list of rooms",
+                            description = "Successfully retrieved list of movies",
+                            content = @Content
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "No movies found",
                             content = @Content
                     )
             }

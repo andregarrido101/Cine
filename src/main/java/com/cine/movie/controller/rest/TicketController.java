@@ -16,11 +16,12 @@ public class TicketController implements ITicketController {
 
     @Override
     public ResponseEntity<TicketEntity> getAllTickets() {
-        return null;
+        return null; // Implementar
     }
 
     @Override
-    public ResponseEntity<TicketEntity> createTicket(TicketCreateRequestDTO dto) {
-        return null;
+    public ResponseEntity<TicketEntity> buyTicket(TicketCreateRequestDTO dto) {
+        TicketEntity ticket = ticketService.buyTicket(dto);
+        return ResponseEntity.status(201).body(ticket);
     }
 }

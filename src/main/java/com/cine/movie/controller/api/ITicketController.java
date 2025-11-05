@@ -52,7 +52,7 @@ public interface ITicketController {
             }
     )
     @PostMapping
-    ResponseEntity<TicketEntity> createTicket(
+    ResponseEntity<TicketEntity> buyTicket(
             @RequestBody
             @Valid
             TicketCreateRequestDTO dto

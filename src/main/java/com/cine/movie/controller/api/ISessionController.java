@@ -26,6 +26,11 @@ public interface ISessionController {
                         responseCode = "200",
                         description = "Successfully retrieved list of sessions",
                         content = @Content
+                ),
+                @ApiResponse(
+                        responseCode = "404",
+                        description = "No sessions found",
+                        content = @Content
                 )
             }
     )

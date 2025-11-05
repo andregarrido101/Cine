@@ -5,7 +5,7 @@ CREATE TABLE movies (
     release_year INT,
     genre VARCHAR(100),
     director VARCHAR(255),
-    price DECIMAL(5, 2) NOT NULL,
+    price DECIMAL(6, 2) NOT NULL,
     active_session VARCHAR(50) DEFAULT 'UNAVAILABLE_MOVIE'
 );
 
@@ -20,31 +20,41 @@ CREATE TABLE users (
 CREATE TABLE rooms (
     id SERIAL PRIMARY KEY,
     room_number INT UNIQUE NOT NULL,
-    is_available VARCHAR(50) DEFAULT 'AVAILABLE_ROOM',
-    capacity INT NOT NULL
+    capacity INT NOT NULL,
+    is_available VARCHAR(50) DEFAULT 'AVAILABLE_ROOM'
 );
 
 CREATE TABLE sessions (
     id SERIAL PRIMARY KEY,
-    movie_name VARCHAR(255) NOT NULL,
-    price_per_seat DECIMAL(5, 2) NOT NULL,
-    session_time VARCHAR(100) NOT NULL,
-    room_number INT NOT NULL,
-    available_seats INT NOT NULL
+    movie_id INT, -- add no null constraint
+    room_id INT, -- add no null constraint
+    price_per_seat DECIMAL(6, 2) NOT NULL,
+    session_time VARCHAR(255) NOT NULL,
+    available_seats INT NOT NULL,
+    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
+    FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE CASCADE
 );
 
 CREATE TABLE tickets (
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(id),
-    session_id INT REFERENCES sessions(id),
-    seat_code INT NOT NULL,
-    purchase_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    user_id INT NOT NULL,
+    session_id INT NOT NULL,
+    room_id INT NOT NULL,
+    seat_code VARCHAR(10) NOT NULL,
+    purchase_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE,
+    FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE CASCADE
 );
 
 CREATE TABLE seats (
     id SERIAL PRIMARY KEY,
-    seat_code INT NOT NULL,
-    session_id INT REFERENCES sessions(id),
-    room_id INT REFERENCES rooms(id),
-    ticket_id INT REFERENCES tickets(id)
+    seat_code VARCHAR(10) NOT NULL,
+    session_id INT NOT NULL,
+    room_id INT NOT NULL,
+    ticket_id INT,
+    FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE,
+    FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE CASCADE,
+    FOREIGN KEY (ticket_id) REFERENCES tickets(id) ON DELETE SET NULL,
+    CONSTRAINT unique_seat_per_session UNIQUE (seat_code, session_id)
 );

@@ -21,8 +21,7 @@ public class UserEntity {
     @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "cpf", nullable = false, unique = true)
-    private String cpf;
+    // Criar coluna para o CPF ou não
 
     @Column(name = "email", nullable = false)
     private String email;

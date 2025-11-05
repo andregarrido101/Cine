@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.cine.movie.domain.entity.enums.MovieAvailability.AVAILABLE_MOVIE;
+import static com.cine.movie.domain.entity.enums.MovieAvailability.UNAVAILABLE_MOVIE;
 import static com.cine.movie.domain.entity.enums.RoomAvailability.OCCUPIED_ROOM;
 
 @Slf4j
@@ -42,37 +43,33 @@ public class SessionService {
 
         var movie = verifyMovieExistence(dto);
 
-        if (Objects.equals(movie.getActiveSession(), AVAILABLE_MOVIE)) {
-            throw new IllegalArgumentException("Movie already has an active session.");
-        } else {
+        if (Objects.equals(movie.getActiveSession(), UNAVAILABLE_MOVIE)) {
             movie.setActiveSession(AVAILABLE_MOVIE);
             movieRepository.save(movie);
         }
 
-        var room = verifyRoomAvailability(dto);
-        room.setIsAvailable(OCCUPIED_ROOM);
+        var room = verifyRoomExistence(dto);
+
+        if (Objects.equals(room.getIsAvailable(), OCCUPIED_ROOM)) {
+            throw new IllegalArgumentException("Room is not available for the session time.");
+        } else {
+            room.setIsAvailable(OCCUPIED_ROOM);
+            roomRepository.save(room);
+        }
 
         var entity = mapper.sessionCreateRequestDTOConvertToEntity(dto);
+        entity.setMovie(movie);
+        entity.setRoom(room);
         sessionRepository.save(entity);
     }
 
     public MovieEntity verifyMovieExistence(SessionCreateRequestDTO dto) {
-        var movie = movieRepository.findMovieByTitle(dto.movieTitle());
-
-        if (!Objects.equals(movie.getMovieTitle(), dto.movieTitle())) {
-            throw new IllegalArgumentException("Movie does not exist in the database.");
-        }
-
-        return movie;
+        return movieRepository.findById(dto.movieId())
+                .orElseThrow(() -> new IllegalArgumentException("Movie not found in the database."));
     }
 
-    public RoomEntity verifyRoomAvailability(SessionCreateRequestDTO dto) {
-        var room = roomRepository.findRoomByRoomNumber(dto.roomNumber());
-
-        if (Objects.equals(room.getIsAvailable(), OCCUPIED_ROOM)) {
-            throw new IllegalArgumentException("Room is not available for the session time.");
-        }
-
-        return room;
+    public RoomEntity verifyRoomExistence(SessionCreateRequestDTO dto) {
+        return roomRepository.findById(dto.roomId())
+                .orElseThrow(() -> new IllegalArgumentException("Room not found in the database."));
     }
 }
