@@ -40,8 +40,8 @@ public class MovieEntity {
     @Column(name = "director")
     private String director;
 
-    @Column(name = "price")
-    private Double price;
+    @Column(name = "duration_minutes")
+    private int durationMinutes;
 
     @Column(name = "active_session")
     @Enumerated(STRING)

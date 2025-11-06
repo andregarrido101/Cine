@@ -26,11 +26,9 @@ public class TicketService {
     private final TicketRepository ticketRepository;
     private final PaymentService paymentService;
     private final TicketMapper ticketMapper;
-    private final SeatMapper seatMapper;
     private final UserRepository userRepository;
     private final SessionRepository sessionRepository;
     private final SeatRepository seatRepository;
-    private final RoomRepository roomRepository;
     private final SeatService seatService;
 
     @Transactional

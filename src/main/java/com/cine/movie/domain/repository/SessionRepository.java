@@ -7,8 +7,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface SessionRepository extends JpaRepository<SessionEntity, Long> {
+
+    @Query("""
+            SELECT s\s
+            FROM SessionEntity s\s
+            WHERE s.movie.id = :id\s
+            """)
+    List<SessionEntity> findByMovieId(@Param("id") Long roomId);
 
     @Modifying
     @Query("""

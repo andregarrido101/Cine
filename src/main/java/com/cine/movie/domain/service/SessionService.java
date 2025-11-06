@@ -32,9 +32,9 @@ public class SessionService {
     private final MovieRepository movieRepository;
     private final SessionMapper mapper;
 
-    public List<SessionEntity> getAllSessions() {
-        log.info("Fetching all sessions from the database");
-        return sessionRepository.findAll();
+    public List<SessionEntity> getAllSessionsForAMovie(Long id) {
+        log.info("Fetching all sessions for a specific movie from the database");
+        return sessionRepository.findByMovieId(id);
     }
 
     @Transactional
@@ -61,6 +61,8 @@ public class SessionService {
         entity.setMovie(movie);
         entity.setRoom(room);
         sessionRepository.save(entity);
+
+        // Adicionar lógica para liberar a sala (setar room para disponível e excluir a sessão) após a sessão acabar (pesquisar como trabalhar com tempo em Java)
     }
 
     public MovieEntity verifyMovieExistence(SessionCreateRequestDTO dto) {

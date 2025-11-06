@@ -18,8 +18,8 @@ public class SessionController implements ISessionController {
     private final SessionService sessionService;
 
     @Override
-    public ResponseEntity<List<SessionEntity>> getAllSessions() {
-        List<SessionEntity> sessions = sessionService.getAllSessions();
+    public ResponseEntity<List<SessionEntity>> getAllSessionsForAMovie(Long id) {
+        List<SessionEntity> sessions = sessionService.getAllSessionsForAMovie(id);
         return ResponseEntity.status(HttpStatus.OK).body(sessions);
     }
 

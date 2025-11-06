@@ -5,7 +5,7 @@ CREATE TABLE movies (
     release_year INT,
     genre VARCHAR(100),
     director VARCHAR(255),
-    price DECIMAL(6, 2) NOT NULL,
+    duration_minutes INT NOT NULL,
     active_session VARCHAR(50) DEFAULT 'UNAVAILABLE_MOVIE'
 );
 

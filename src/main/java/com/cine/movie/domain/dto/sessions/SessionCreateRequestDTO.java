@@ -1,7 +1,10 @@
 package com.cine.movie.domain.dto.sessions;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
@@ -16,12 +19,11 @@ public record SessionCreateRequestDTO(
                 description = "ID of the movie for the session",
                 example = "1",
                 requiredMode = REQUIRED,
-                type = "number",
-                minLength = 1,
-                maxLength = 100
+                type = "integer",
+                minimum = "1"
         )
-        @NotBlank
-        @Size(min = 1, max = 100)
+        @NotNull
+        @Min(1)
         Long movieId,
 
         @Schema(
@@ -31,8 +33,8 @@ public record SessionCreateRequestDTO(
                 type = "number",
                 minimum = "0.01"
         )
-        @NotBlank
-        @Size(min = 1)
+        @NotNull
+        @DecimalMin(value = "0.01")
         Double pricePerSeat,
 
         @Schema(
@@ -54,8 +56,8 @@ public record SessionCreateRequestDTO(
                 type = "integer",
                 minimum = "1"
         )
-        @Size(min = 1)
-        @NotBlank
+        @NotNull
+        @Min(1)
         Long roomId,
 
         @Schema(
@@ -65,8 +67,8 @@ public record SessionCreateRequestDTO(
                 type = "integer",
                 minimum = "1"
         )
-        @Size(min = 1)
-        @NotBlank
+        @NotNull
+        @Min(1)
         Integer availableSeats
 ) {
 }
