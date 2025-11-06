@@ -57,6 +57,9 @@ public class SessionService {
             roomRepository.save(room);
         }
 
+        // Verificar se já existe uma sessão no mesmo horário para a minha sala, calcular com base no tempo de duração
+        // do filme e o tempo das pessoas saírem da pessoa e a limpeza da sala antes da próxima sessão começar.
+
         var entity = mapper.sessionCreateRequestDTOConvertToEntity(dto);
         entity.setMovie(movie);
         entity.setRoom(room);
