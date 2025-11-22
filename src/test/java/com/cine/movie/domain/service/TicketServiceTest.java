@@ -32,10 +32,6 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class TicketServiceTest {
 
-    /*
-    private final TicketGenerator ticketGenerator = new TicketGenerator();
-    private final UserGenerator userGenerator = new UserGenerator();
-     */
     private final JsonGenerator jsonGenerator = new JsonGenerator();
 
     @Mock
@@ -66,15 +62,9 @@ class TicketServiceTest {
     private TicketEntity ticketEntity;
     private TicketCreateRequestDTO ticketCreateRequest;
     private SessionEntity sessionEntity;
-    private SeatEntity seatEntity;
 
     @BeforeEach
     void setUp() {
-        /*
-        userEntity = userGenerator.generateEntity();
-        ticketCreateRequest = ticketGenerator.generateRequestCreate();
-
-         */
         userEntity = jsonGenerator.generate(
                 "json/entity/user.json",
                 UserEntity.class
@@ -90,10 +80,6 @@ class TicketServiceTest {
         ticketEntity = jsonGenerator.generate(
                 "/json/entity/ticket.json",
                 TicketEntity.class
-        );
-        seatEntity = jsonGenerator.generate(
-                "json/entity/seat.json",
-                SeatEntity.class
         );
     }
 
@@ -113,12 +99,15 @@ class TicketServiceTest {
 
         verify(userRepository).findById(ticketCreateRequest.userId());
         verify(sessionRepository).findById(ticketCreateRequest.sessionId());
+        verify(seatRepository).existsBySeatCodeAndSessionId(ticketCreateRequest.seatCode(), ticketCreateRequest.sessionId());
 
         ArgumentCaptor<TicketEntity> captor = ArgumentCaptor.forClass(TicketEntity.class);
         verify(ticketRepository).save(captor.capture());
 
         TicketEntity savedTicket = captor.getValue();
         assertEquals(userEntity, savedTicket.getUser());
+        assertEquals(sessionEntity, savedTicket.getSession());
+        assertEquals(ticketEntity.getSeatCode(), savedTicket.getSeatCode());
 
     }
 }
