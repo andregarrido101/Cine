@@ -1,0 +1,6 @@
+{
+  "id": 1,
+  "username": "John",
+  "email": "john@email.com",
+  "passwordHash": "$argon2i$v=19$m=1024,t=2,p=2$YzJBSzV4TUhkMzc3d3laeg$zqU/1IN0/AogfP4cmSJI1vc8lpXRW9/S0sYY2i2jHT0"
+}
