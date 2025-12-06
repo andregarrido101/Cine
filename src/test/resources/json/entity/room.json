@@ -1,0 +1,6 @@
+{
+  "id": 1,
+  "roomNumber": 101,
+  "capacity": 50,
+  "isAvailable": "AVAILABLE_ROOM"
+}
