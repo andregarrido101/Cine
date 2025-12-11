@@ -1,0 +1,57 @@
+{
+  "id": 1,
+  "session": {
+    "id": 1,
+    "movie": {
+      "id": 1,
+      "movieTitle": "Inception",
+      "synopsis": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+      "releaseYear": 1972,
+      "genre": "Crime",
+      "director": "Francis Ford Coppola",
+      "durationMinutes": 175,
+      "activeSession": "AVAILABLE_MOVIE"
+    },
+    "room": {
+      "id": 1,
+      "roomNumber": 101,
+      "capacity": 50,
+      "isAvailable": "AVAILABLE_ROOM"
+    },
+    "pricePerSeat": 10.5,
+    "sessionTime": "2025-11-15T20:00:00",
+    "availableSeats": 50
+  },
+  "ticket": {
+    "id": 1,
+    "user": {
+      "id": 1,
+      "username": "john_doe",
+      "email": "john@email.com",
+      "passwordHash": "hashed_password_1"
+    },
+    "session": {
+      "id": 1,
+      "movie": {
+        "id": 1,
+        "movieTitle": "Inception",
+        "synopsis": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+        "releaseYear": 1972,
+        "genre": "Crime",
+        "director": "Francis Ford Coppola",
+        "durationMinutes": 175,
+        "activeSession": "AVAILABLE_MOVIE"
+      },
+      "room": {
+        "id": 1,
+        "roomNumber": 101,
+        "capacity": 50,
+        "isAvailable": "AVAILABLE_ROOM"
+      },
+      "pricePerSeat": 10.5,
+      "sessionTime": "2025-11-15T20:00:00",
+      "availableSeats": 50
+    },
+    "seatCode": "A01"
+  }
+}

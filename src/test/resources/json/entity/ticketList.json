@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "user": {
+      "id": 1,
+      "username": "john_doe",
+      "email": "john@email.com",
+      "passwordHash": "hashed_password_1"
+    },
+    "session": {
+      "id": 1,
+      "movie": {
+        "id": 1,
+        "movieTitle": "Inception",
+        "synopsis": "A thief who steals corporate secrets through dream-sharing technology is tasked with planting an idea into the mind of a C.E.O.",
+        "releaseYear": 2010,
+        "genre": "Sci-Fi",
+        "director": "Christopher Nolan",
+        "durationMinutes": 148,
+        "activeSession": "AVAILABLE_MOVIE"
+      },
+      "room": {
+        "id": 1,
+        "roomNumber": 101,
+        "capacity": 50,
+        "isAvailable": "AVAILABLE_ROOM"
+      },
+      "pricePerSeat": 10.5,
+      "sessionTime": "2025-11-15T20:00:00",
+      "availableSeats": 50
+    },
+    "seatCode": "A01"
+  },
+  {
+    "id": 2,
+    "user": {
+      "id": 2,
+      "username": "mary_smith",
+      "email": "mary@email.com",
+      "passwordHash": "hashed_password_2"
+    },
+    "session": {
+      "id": 2,
+      "movie": {
+        "id": 2,
+        "movieTitle": "Interstellar",
+        "synopsis": "A team of explorers travel through a wormhole in space to ensure humanity's survival.",
+        "releaseYear": 2014,
+        "genre": "Sci-Fi",
+        "director": "Christopher Nolan",
+        "durationMinutes": 169,
+        "activeSession": "AVAILABLE_MOVIE"
+      },
+      "room": {
+        "id": 2,
+        "roomNumber": 202,
+        "capacity": 80,
+        "isAvailable": "AVAILABLE_ROOM"
+      },
+      "pricePerSeat": 12.0,
+      "sessionTime": "2025-11-16T18:30:00",
+      "availableSeats": 80
+    },
+    "seatCode": "B12"
+  },
+  {
+    "id": 3,
+    "user": {
+      "id": 3,
+      "username": "alex_jones",
+      "email": "alex@email.com",
+      "passwordHash": "hashed_password_3"
+    },
+    "session": {
+      "id": 3,
+      "movie": {
+        "id": 3,
+        "movieTitle": "The Godfather",
+        "synopsis": "The aging patriarch of an organized crime dynasty transfers control of his empire to his reluctant son.",
+        "releaseYear": 1972,
+        "genre": "Crime",
+        "director": "Francis Ford Coppola",
+        "durationMinutes": 175,
+        "activeSession": "AVAILABLE_MOVIE"
+      },
+      "room": {
+        "id": 3,
+        "roomNumber": 303,
+        "capacity": 60,
+        "isAvailable": "AVAILABLE_ROOM"
+      },
+      "pricePerSeat": 15.0,
+      "sessionTime": "2025-12-01T21:00:00",
+      "availableSeats": 60
+    },
+    "seatCode": "C07"
+  },
+  {
+    "id": 4,
+    "user": {
+      "id": 4,
+      "username": "lucas_martin",
+      "email": "lucas@email.com",
+      "passwordHash": "hashed_password_4"
+    },
+    "session": {
+      "id": 4,
+      "movie": {
+        "id": 4,
+        "movieTitle": "The Dark Knight",
+        "synopsis": "Batman faces the Joker, a criminal mastermind who plunges Gotham into chaos.",
+        "releaseYear": 2008,
+        "genre": "Action",
+        "director": "Christopher Nolan",
+        "durationMinutes": 152,
+        "activeSession": "AVAILABLE_MOVIE"
+      },
+      "room": {
+        "id": 4,
+        "roomNumber": 404,
+        "capacity": 100,
+        "isAvailable": "AVAILABLE_ROOM"
+      },
+      "pricePerSeat": 14.0,
+      "sessionTime": "2025-12-10T19:45:00",
+      "availableSeats": 100
+    },
+    "seatCode": "D20"
+  },
+  {
+    "id": 5,
+    "user": {
+      "id": 5,
+      "username": "emma_brown",
+      "email": "emma@email.com",
+      "passwordHash": "hashed_password_5"
+    },
+    "session": {
+      "id": 5,
+      "movie": {
+        "id": 5,
+        "movieTitle": "Avatar",
+        "synopsis": "A paraplegic Marine dispatched to the moon Pandora becomes torn between following orders and protecting his new home.",
+        "releaseYear": 2009,
+        "genre": "Adventure",
+        "director": "James Cameron",
+        "durationMinutes": 162,
+        "activeSession": "AVAILABLE_MOVIE"
+      },
+      "room": {
+        "id": 5,
+        "roomNumber": 505,
+        "capacity": 120,
+        "isAvailable": "AVAILABLE_ROOM"
+      },
+      "pricePerSeat": 18.0,
+      "sessionTime": "2025-12-20T17:00:00",
+      "availableSeats": 120
+    },
+    "seatCode": "E03"
+  }
+]

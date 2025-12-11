@@ -1,0 +1,7 @@
+{
+  "movieId": 1,
+  "pricePerSeat": 10.5,
+  "sessionTime": "2025-11-15T20:00:00",
+  "roomId": 1,
+  "availableSeats": 50
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "movie": {
+      "id": 1,
+      "movieTitle": "Inception",
+      "synopsis": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+      "releaseYear": 2010,
+      "genre": "Sci-Fi",
+      "director": "Christopher Nolan",
+      "durationMinutes": 148,
+      "activeSession": "AVAILABLE_MOVIE"
+    },
+    "room": {
+      "id": 1,
+      "roomNumber": 101,
+      "capacity": 50,
+      "isAvailable": "AVAILABLE_ROOM"
+    },
+    "pricePerSeat": 15.5,
+    "sessionTime": "2025-11-15T20:00:00",
+    "availableSeats": 50
+  },
+  {
+    "id": 2,
+    "movie": {
+      "id": 2,
+      "movieTitle": "Interstellar",
+      "synopsis": "A team of explorers travel through a wormhole in space to ensure humanity's survival.",
+      "releaseYear": 2014,
+      "genre": "Sci-Fi",
+      "director": "Christopher Nolan",
+      "durationMinutes": 169,
+      "activeSession": "AVAILABLE_MOVIE"
+    },
+    "room": {
+      "id": 2,
+      "roomNumber": 102,
+      "capacity": 80,
+      "isAvailable": "AVAILABLE_ROOM"
+    },
+    "pricePerSeat": 18.0,
+    "sessionTime": "2025-11-16T18:30:00",
+    "availableSeats": 80
+  },
+  {
+    "id": 3,
+    "movie": {
+      "id": 3,
+      "movieTitle": "The Godfather",
+      "synopsis": "The aging patriarch of an organized crime dynasty transfers control of his empire to his reluctant son.",
+      "releaseYear": 1972,
+      "genre": "Crime",
+      "director": "Francis Ford Coppola",
+      "durationMinutes": 175,
+      "activeSession": "AVAILABLE_MOVIE"
+    },
+    "room": {
+      "id": 3,
+      "roomNumber": 103,
+      "capacity": 60,
+      "isAvailable": "AVAILABLE_ROOM"
+    },
+    "pricePerSeat": 16.5,
+    "sessionTime": "2025-11-20T21:00:00",
+    "availableSeats": 60
+  },
+  {
+    "id": 4,
+    "movie": {
+      "id": 4,
+      "movieTitle": "The Dark Knight",
+      "synopsis": "Batman faces the Joker, a criminal mastermind who plunges Gotham into chaos.",
+      "releaseYear": 2008,
+      "genre": "Action",
+      "director": "Christopher Nolan",
+      "durationMinutes": 152,
+      "activeSession": "AVAILABLE_MOVIE"
+    },
+    "room": {
+      "id": 4,
+      "roomNumber": 104,
+      "capacity": 100,
+      "isAvailable": "AVAILABLE_ROOM"
+    },
+    "pricePerSeat": 20.0,
+    "sessionTime": "2025-12-01T19:45:00",
+    "availableSeats": 100
+  },
+  {
+    "id": 5,
+    "movie": {
+      "id": 5,
+      "movieTitle": "Avatar",
+      "synopsis": "A paraplegic Marine dispatched to the moon Pandora becomes torn between following orders and protecting his new home.",
+      "releaseYear": 2009,
+      "genre": "Adventure",
+      "director": "James Cameron",
+      "durationMinutes": 162,
+      "activeSession": "AVAILABLE_MOVIE"
+    },
+    "room": {
+      "id": 5,
+      "roomNumber": 105,
+      "capacity": 120,
+      "isAvailable": "AVAILABLE_ROOM"
+    },
+    "pricePerSeat": 22.0,
+    "sessionTime": "2025-12-10T17:00:00",
+    "availableSeats": 120
+  }
+]
