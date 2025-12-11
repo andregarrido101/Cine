@@ -175,13 +175,13 @@ http://localhost:8080
 3. **Para parar os containers:**
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 4. **Para parar e remover volumes (limpar banco de dados):**
 
 ```bash
-docker-compose down -v
+docker compose down -v
 ```
 
 ## Executando Localmente (sem Docker)
@@ -211,8 +211,7 @@ A aplicação estará disponível em `http://localhost:8080`
 - ✅ Segue padrões **RESTful**
 - ✅ **Autenticação JWT** implementada
 - ✅ **Validações** completas nos DTOs
-- ✅ **Testes unitários e de integração** implementados
-- ✅ **Tratamento de exceções** centralizado
+- ✅ **Testes unitários** implementado
 - ✅ **Criptografia de senhas** com BCrypt
 
 ## Fluxo de Uso
